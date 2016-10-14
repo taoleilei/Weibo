@@ -1,0 +1,400 @@
+<style>
+    .clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+    }
+    .clearfix {
+        display:inline-block;
+        }
+    .WB_frame{
+        width: 920px;
+        min-height: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .WB_frame_a{
+        width: 100%;
+        display: inline-block;
+        letter-spacing: normal;
+        word-spacing: normal;
+        vertical-align: top;
+        font-size: 12px;
+    }
+
+    .PCD_header{
+        height: 300px;
+
+    }
+    .pf_wrap{
+        position: absolute;
+        height: 300px;
+    }
+
+    .cover_wrap{
+        position: absolute;
+        width: 920px;
+        height: 300px;
+        background-image:url(/static/Commons/Images/027.jpg);
+        background-position: bottom center;
+        background-repeat: no-repeat;
+        overflow: hidden;
+    }
+    .PCD_header .shadow{
+        position: absolute;
+        width: 100%;
+        height: 300px;
+        overflow: hidden;
+        z-index: 2;
+    }
+    .PCD_header .pf_photo{
+        position: relative;
+        width: 100px;
+        height: 100px;
+        margin: 48px auto 0;
+        padding: 4px;
+        background: #fff;
+        background: rgba(255,255,255,0.3);
+        border-radius: 50%;
+    }
+    .PCD_header .photo_wrap{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
+    .PCD_header .pf_photo .photo{
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin-top: -12px;
+    }
+    .PCD_header .pf_username{
+
+        margin-top: 6px;
+        color: #fff;
+        text-align: center;
+        text-shadow: 0 0 4px rgba(0,0,0,0.5);
+        vertical-align: text-bottom;
+    }
+    .PCD_header .username{
+        font-size: 22px;
+        display: inline;
+    }
+    .icon_pf_female{
+        width: 16px;
+        height: 16px;
+        vertical-align: -2px;
+        background-position: -125px -50px;
+    }
+
+    .icon_pf_male{
+        width: 16px;
+        height: 16px;
+        vertical-align: -2px;
+    }
+    .W_icon{
+        display: inline-block;
+        background-image: url("/static/Commons/Images/icon.png");
+    }
+    .PCD_header .pf_intro{
+        margin-top: 4px;
+        text-align: center;
+        color: #fff;
+        line-height: 18px;
+        text-shadow: 0 0 4px rgba(0,0,0,0.5);
+    }
+    .S_bg2 {
+        background-color: #fff;
+    }
+    .S_line2 {
+        border-color: #f2f2f5;
+    }
+
+    .PCD_tab{
+        min-width: 572px;
+        margin-bottom: 16px;
+        box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+    }
+    .PCD_tab .tab_wrap {
+        width: 62.174%;
+        height: 40px;
+        margin: 0 auto;
+    }
+    .PCD_tab .tb_tab {
+    width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    }
+    .PCD_tab .tb_tab .current .tab_link {
+        font-weight: bold;
+    }
+    .PCD_tab .tb_tab .tab_link {
+        position: relative;
+        display: inline-block;
+        height: 40px;
+        margin: 0 auto;
+        line-height: 38px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    .W_input:focus, .S_txt1, .W_btn_b, .SW_fun .S_func1 {
+        color: #333;
+        text-decoration: none;
+    }
+    .PCD_tab .tb_tab .current .tab_link {
+        font-weight: bold;
+    }
+    a{
+        text-decoration: none;
+    }
+    .WB_frame #plc_main {
+        width: 940px;
+    }
+    .WB_frame_b {
+        width: 300px;
+        margin-right: 20px;
+        background-color: aqua;
+        min-height: 400px;
+        display: inline-block;
+    }
+    .WB_frame_c {
+        width: 600px;
+        margin-right: 20px;
+        background-color: #333333;
+        min-height: 400px;
+        float: right;
+    }
+    .PCD_counter{
+        overflow: hidden;
+    }
+    .WB_cardwrap{
+        background-color: #fff;
+        border: solid 1px gainsboro;
+        height: 60px;
+        width: 298px;
+    }
+    .PCD_counter .tb_counter{
+        width: 100%;
+        margin-left: -1px;
+        line-height: 14px;
+        text-align: center;
+        table-layout: fixed;
+    }
+    .PCD_counter .tb_counter td {
+        border-left-width: 1px;
+        border-left-style: solid;
+        border-color: #d9d9d9;
+    }
+    .PCD_counter .tb_counter td a{
+        display: block;
+    }
+    .PCD_counter .tb_counter td strong {
+        display: block;
+        margin: 2px 0 6px 0;
+        font-family: Tahoma;
+        font-weight: 400;
+        font-size: 18px;
+    }
+    .PCD_counter .tb_counter td span{
+        color: #808080;
+        text-decoration: none;
+    }
+    #Pl_Core_UserInfo__8{
+        background-color: #fff;
+        border: solid 1px gainsboro;
+    }
+    .PCD_person_info .verify_area {
+        padding: 0px 16px 0px 16px;
+        border-bottom-style: solid;
+        border-bottom-width: 1px;
+    }
+    .PCD_person_info .verify_area .verify .apply_link {
+        height: 28px;
+        line-height: 28px;
+        margin-right: 10px;
+    }
+    .WB_innerwrap {
+        padding: 1px;
+        margin-top: 1px;
+    }
+    .W_icon_level.icon_level_c2 {
+        background-color: #ffb400;
+    }
+    .W_icon_level {
+        width: 25px;
+        line-height: 14px;
+        text-align: center;
+        display: inline-block;
+        background: #a4a4a4;
+        border-radius: 8px;
+        margin: 0 0 0 3px;
+        padding: 0 5px 0 3px;
+    }
+    .tab_box{
+        height: 38px;
+        width: 600px;
+        background-color: fff;
+    }
+    .WB_tab_a .tab_box {
+        width: 100%;
+        height: 38px;
+    }
+    .WB_tab_a .tab_box_c {
+        border-radius: 2px;
+        box-shadow: 0 0 2px rgba(0,0,0,0.2);
+    }
+</style>
+
+{% extends "Layout/_layout.html" %}
+
+{% block body %}
+
+    <div class="WB_frame">
+        <div class="WB_frame_a">
+            <div id="Pl_Official_Headerv6__1">
+               <div class="PCD_header">
+                <div class="pf_wrap">
+                    <div class="cover_wrap">
+                        <div class="shadow">
+                            <div class="pf_photo">
+                                <p class="photo_wrap">
+                                    <a href="javascript:void(0);" action-type="setPhoto" title="更换头像" suda-uatrack="key=profile_head&amp;value=head_host">
+                                        <img src="/static/Commons/Images/dfv.jpg" alt="姚涵" class="photo">
+                                    </a>
+
+						        </p>
+                            </div>
+                            <div class="pf_username">
+						        <h1 class="username">姚涵</h1>
+                                <span class="icon_bed"><a><i class="W_icon icon_pf_female"></i></a></span>
+						    </div>
+                            <div class="pf_intro" title="我是姚涵">我是姚涵</div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            </div>
+            <div id="Pl_Official_Nav__2">
+                <div class="PCD_tab S_bg2">
+                    <div class="tab_wrap" style="width:60%">
+                        <table class="tb_tab" cellpadding="0" cellspacing="0">
+                            <tbody><tr>
+                                            <td class="current">
+                                    <a bpfilter="page" href="#" node-type="nav_link" otherhref="#" class="tab_link">
+                                        <span class="S_txt1 t_link">我的主页</span>
+                                        <span class="ani_border"></span>
+                                    </a>
+                                </td>
+                                            <td>
+                                    <a bpfilter="page" href="#" class="tab_link">
+                                        <span class="S_txt1 t_link">我的相册</span>
+                                        <span class="ani_border"></span>
+                                    </a>
+                                </td>
+                                            <td>
+                                    <a bpfilter="page" href="#" class="tab_link">
+                                        <span class="S_txt1 t_link">管理中心</span>
+                                        <span class="ani_border"></span>
+                                    </a>
+                                </td>
+                                        </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div id="plc_main">
+            <div class="WB_frame_b" fixed-box="true">
+                <div class="WB_cardwrap S_bg2">
+                    <div class="PCD_counter">
+                        <div class="WB_innerwrap">
+                        <table class="tb_counter">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a class="S_txt1" href="#">
+                                            <strong>16</strong>
+                                            <span>关注</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="S_txt1" href="#">
+                                            <strong>16</strong>
+                                            <span>粉丝</span>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a class="S_txt1" href="#">
+                                            <strong>11</strong>
+                                            <span>微博</span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                <div id="Pl_Core_UserInfo__8">
+                    <div class="PCD_person_info">
+                        <div class="verify_area S_line2">
+                            <p class="verify clearfix" style="margin-top: 5px; margin-bottom: 5px;">
+								<span class="icon_bed W_fl"><a class="apply_link W_fl S_txt1" href="#">申请认证</a></span>
+								<span class="icon_group S_line1 W_fl">
+                                    <a class="W_icon_level icon_level_c2" title="微博等级8 升级有好礼" href="#" target="_black">
+                                        <span>Lv.8</span>
+                                    </a>&nbsp;</span>
+							</p>
+                            <p class="info"><span></span></p>
+                        </div>
+                        <div class="WB_innerwrap">
+                            <div class="m_wrap">
+                                <div class="bars_box">
+                                    <p class="bar_title">个人资料完成度<span class="num">20%</span></p>
+                                        <div class="bar_box S_bg1">
+                                        <div class="bar" style="width:20%"></div>
+                                        </div>
+                                </div>
+						    </div>
+                        </div>
+                        <a class="WB_cardmore S_txt1 S_line1 clearfix" href="#">
+	                        <span class="more_txt">编辑个人资料&nbsp;<em class="W_ficon ficon_arrow_right S_ficon">a</em></span>
+                        </a>
+                    </div>
+                </div>
+                <div style="background-color: #fff; margin-top: 5px; min-height: 300px;">
+                    <span>相册</span>
+                </div>
+            </div>
+            <div class="WB_frame_c" fixed-box="true">
+                <div id="Pl_Official_ProfileFeedNav__23">
+                    <div style="z-index: 10; position: relative; transition: margin-top 0.3s ease; will-change: margin-top, top; width: 600px;" class=" __web-inspector-hide-shortcut__">
+                        <div class="WB_tab_a" node-type="feed_nav" fixed-item="true" style="position: relative; box-shadow: none;" fixed-id="5">
+                            <div class="tab_box tab_box_c">
+                                全部
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div style="width: 100%;height: 200px; background-color: white">
+                    正文
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+{% endblock %}
+
+
+

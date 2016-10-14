@@ -1,0 +1,271 @@
+<style>
+    .hide{
+        display: none;
+    }
+    .login_ground{
+        width: 100%;
+        min-height: 1000px;
+        background: url("/static/Commons/Images/body_bg_login.jpg");
+        background-repeat: no-repeat;
+        background-color: #d4d5e0;
+    }
+    .login_main{
+        background-color: rgba(36,61,89,0.25);
+        width: 1000px;
+        margin: 50px auto;
+        overflow: auto;
+    }
+    .login_main .WB_left_nav{
+        width: 150px;
+        position: fixed;
+    }
+    .WB_left_nav .item{
+        margin-bottom: 15px;
+
+    }
+    .login_main .right{
+        float: left;
+        width: 850px;
+        display: inline-block;
+        min-height: 700px;
+        float: right;
+
+    }
+    .WB_frame_c{
+        width: 600px;
+        margin-right: 10px;
+        display: inline-block;
+
+    }
+    .WB_frame_c .WB_cardwrap{
+        width: 100%;
+        background: #fff8bf;
+        position: relative;
+        box-shadow: 0 0 2px rgba(0,0,0,0.2);
+        border-radius: 2px;
+    }
+    a{
+        text-decoration: none;
+    }
+    div{
+        margin: 0;
+        padding: 0;
+    }
+    .WB_frame_c .WB_cardwrap .ficon_note {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+        color: #eb7350;
+        font-size: 12px;
+    }
+    .unlogin_notes .closed{
+        display: block;
+        height: 30px;
+        line-height: 30px;
+        position: absolute;
+        top: 0px;
+        right: 5px;
+    }
+    .unlogin_notes .closed {
+        color: #696e78;
+        font-size: 12px;
+        font-family: "Meiryo UI";
+        font-style: normal;
+        font-weight: normal;
+    }
+    .WB_main_r{
+        width: 230px;
+        min-height: 300px;
+        margin-right: 10px;
+        position: relative;
+        display: inline-block;
+        float: right;
+        background-color: #fff;
+    }
+    .login_box .sp_gap a{
+        font-weight: bold;
+        font-size: 14px;
+        color: #000;
+    }
+    .login_box .sp_gap{
+        margin-left: 25px;
+
+    }
+    .login_box .item1{
+        margin-top: 15px;
+        padding: 0 15px 0 15px;
+    }
+    .login_box .item2{
+        margin-top: 10px;
+        padding: 0 15px 0 15px;
+    }
+
+    .input_wrap{
+        height: 28px;
+        width: 100%;
+        padding:2px 0;
+        border:1px solid #ccc;
+        border-radius:2px;
+{#        background-color:#FFF;#}
+{#        width: 198px;#}
+{#        background-position: 11px -91px;#}
+{#        background-image: url("/static/Commons/Images/sprite_login.png");#}
+{#        background-repeat: no-repeat;#}
+    }
+.S_txt2{
+    color: #808080;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: normal;
+    }
+
+.submit_box{
+    margin-top: 15px;
+    height: 34px;
+    width: 200px;
+    }
+.submit_box .submit_box_inner{
+    padding: 2px 0;
+    border: 1px solid #eb7350;
+    border-radius: 2px;
+    width: 100%;
+    height: 100%;
+    background-color: #ff8140;
+    line-height: 34px;
+    }
+.submit_box a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    }
+.submit_box_inner_in{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    }
+</style>
+
+{% extends "Layout/_layout.html" %}
+
+{% block body %}
+<div class="login_ground">
+    <div class="login_main">
+        <div style="margin-top: 15px">
+            <div class="left">
+                <div class="WB_left_nav">
+                    <div class="item">
+                        <a>
+                            <span>Logo</span>
+                            <span>推荐</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a>
+                            <span>Logo</span>
+                            <span>明星</span>
+                        </a>
+                    </div>
+                    <div>
+                        <a>
+                            <span>Logo</span>
+                            <span>视频</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="right">
+                <div class="WB_frame_c">
+                    <div id="pl_unlogin_home_feed">
+                        <div class="WB_cardwrap unlogin_notes" >
+                            <a href="javascript:void(0);" class="ficon_note">您有未读内容，点击查看</a>
+                            <a href="javascript:void(0);" class="W_ficon ficon_close S_ficon closed" action-type="close">X</a></div>
+                        <div class="WB_innerwrap">
+                            <div class="m_wrap">
+                                <ul>
+                                    <li>
+                                        <div class="pt_li">
+                                            <div class="pic_txt">
+                                                <div class="pic_box"></div>
+                                                <div class="info_box"></div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li></li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="WB_main_r" >
+                <div id="pl_unlogin_home_login">
+                    <div class="login_box">
+                        <div class="item1">
+                            <span class="sp_gap"><a href="javascript:void(0);">账号登录</a></span>
+                            <span class="sp_gap"><a href="javascript:void(0);">安全登录</a></span>
+                            <hr>
+                        </div>
+                        <div class="item2">
+                            <div class="">
+                                <input type="text" name="user" placeholder="邮箱/会员帐号/手机号" class="input_wrap" id="user">
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <input type="password" name="pass" placeholder="请输入密码" class="input_wrap" id="password">
+                            </div>
+                            <input type="checkbox">
+                            <span class="S_txt2">记住我</span>
+                            <a class="S_txt2" href="#" style="margin-left: 62px;">忘记密码?</a>
+                            <div class="submit_box">
+                                <a href="javascript:void(0)" onclick="login(this);" methods="POST">
+                                    <div class="submit_box_inner">
+                                        <div class="submit_box_inner_in">登录</div>
+                                    </div>
+                                </a>
+                            </div>
+
+                        </div>
+
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/Commons/JavaScript/jquery.min.js"></script>
+<script>
+    function login(){
+        var user = $("#user").val();
+        var passwd = $("#password").val();
+        var data = {};
+        data['user'] = user;
+        data['passwd'] = passwd;
+        var post_data_str = JSON.stringify(data);
+        $.ajax({
+            url: '/login/',
+            type: 'POST',
+            data: {'post_data': post_data_str},
+            dataType: 'json',
+            success: function (arg){
+                if(arg.status){
+                    location.href='/index/'
+                }else {
+                    alert(arg.message);
+                }
+            }
+        });
+    }
+</script>
+
+
+
+{% endblock %}

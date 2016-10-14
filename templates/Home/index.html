@@ -1,0 +1,581 @@
+{% extends "Layout/_layout.html" %}
+{% block css %}
+
+    <link rel="stylesheet" href="/static/Commons/Css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/static/Commons/Css/face.css">
+    <link rel="stylesheet" type="text/css" href="/static/Commons/Css/index.css">
+    <style type="text/css">
+        #image-holder img{
+            max-width: 100px;
+            max-width: 100px;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+    <div class="wb_main clearfix">
+        <div class="content clearfix">
+            <div class="left">
+                <div class="WB_left_nav">
+                    <div class="lev_Box">
+                        <h3>
+                            <a href="javascript:void(0)">
+                                <span>首页</span>
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="WB_left_nav">
+                    <div class="lev_Box">
+                        <h3>
+                            <a href="javascript:void(0)">
+                                <span>我的收藏</span>
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+                <div class="WB_left_nav">
+                    <div class="lev_Box">
+                        <h3>
+                            <a href="javascript:void(0)">
+                                <span>我的赞</span>
+                            </a>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <div class="up">
+                    <div class="title_area">
+                        <div class="title">
+                            <p style="font-size: 14px">有什么新鲜事想告诉大家？</p>
+                        </div>
+                        <div class="num">
+                            <span style="font-size: 14px">还可以输入</span>
+                            <span style="font-family: Georgia; font-size: 20px;" id="wordCheck">140</span>
+                            <span style="font-size: 14px">个字符</span>
+                        </div>
+                        <div class="key"></div>
+                    </div>
+                    <div class="WB_input">
+                        <textarea class="W_input " id="W_textarea" title="微博输入框" name="content" node-type="textEl" range="0&amp;0" content="" style="margin: 0px; padding: 0px; border-style: none; border-width: 0px; font-size: 14px; word-wrap: break-word; line-height: 18px; overflow-y: auto; overflow-x: hidden; outline: none;" onKeyUp="javascript:checkWord(this);" onMouseDown="javascript:checkWord(this);"></textarea>
+                        <textarea class="hide" id="saytext" name="saytext"></textarea>
+                    </div>
+                    <div class="func">
+                        <div class="limits" onclick="SelectCut();">
+                            <a href="javascript:void(0)" title="">
+                                <span class="W_autocut">公开</span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                        </div>
+                        <div class="W_btn_s" onclick="Submit(this);" style="cursor: pointer;">发布</div>
+                    </div>
+                    <div class="kind">
+                        <a href="javascript:void(0)">
+                            <span class="fa fa-smile-o" style="font-size: 20px;"></span>
+                            <span class="emotion">表情</span>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <span class="fa fa-picture-o" style="font-size: 20px;"></span>
+                            <span onclick="Uploadpic();">图片</span>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <span class="fa fa-video-camera" style="font-size: 20px;"></span>
+                            <span>视频</span>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <span class="fa fa-hashtag" style="font-size: 20px;"></span>
+                            <span>话题</span>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <span class="fa fa-flash" style="font-size: 20px;"></span>
+                            <span>文章头条</span>
+                        </a>
+                        <a href="javascript:void(0)" value="查看更多" style="font-size: 14px">
+                            <span><b>...</b></span>
+                        </a>
+                    </div>
+                </div>
+                {# 图片上传功能 #}
+                <div class="uploadfile hide" style="z-index: 999; position: absolute; background-color: white; width: 300px; height: 300px; border: 1px solid red;">
+                    <div class="fileinput" style="border-bottom: 1px solid #808080;">
+                        <form enctype="multipart/form-data" name="form1">
+                            <input id="fileImage" type="file" multiple size="30" />
+                            <input type="button" onclick="doUpload();" value="提交" />
+                        </form>  
+                    </div>
+                    <div id="image-holder" class="clearfix"></div>  
+                </div>
+
+                {# 发布类型 #}
+                <div class="layer_menu_list hide" style="position: absolute; z-index: 29999; outline: none; left: 380px; top: 150px;">
+                    <ul>
+                        <li action-type="select" rank="0" class="cur">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-globe fa-fw fa-lg"></i>
+                                公开
+                            </a>
+                        </li>
+                        <li action-type="select" rank="1" class="">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-heart fa-fw fa-lg"></i>
+                                好友圈
+                            </a>
+                        </li>
+                        <li action-type="select" rank="2" class="">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-lock fa-fw fa-lg"></i>
+                                仅自己可见
+                            </a>
+                        </li>
+                        <li class="line"><hr></li>
+                        <li action-type="select" rank="3" class="">
+                            <a href="javascript:void(0)">
+                                <i class="fa fa-user-plus fa-fw fa-lg"></i>
+                                群可见
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="WB_cardwrap">
+                    <div class="WB_cardwrap_b hide" style="color: red;" onclick="LoadNewWeibo();">
+                        你有<span id="new_wb_notify_bar">0</span>条新微博，点击查看
+                    </div>
+                </div>
+                <div class="WB_text clearfix" id="WB_text">
+
+                </div>
+                <div class="wb_list" style="height: auto;">
+                    <div class="wb_item">
+                        <div class="wb_face wb_item_float">
+                            <img src="{{ request.user.userprofile.head_img }}">
+                        </div>
+                        <div class="wb_item_detail wb_item_float ">
+                            <div class="wb_item_info">
+                                {{ request.user.userprofile.name }}
+                            </div>
+                            <div class="wb_item_from">
+                                今天  来自 iphone 7 Plus
+                            </div>
+                            <div class="wb_item_content">
+                                山賀琴子，日本美女大学生、模特，北海道出身，目前就读于青山学院大学法学部法学科，2015年就被选为“青山大学小姐”，2016年更是获得全日本最顶级的校园小姐大赛「Miss of Miss CAMPUS QUEEN CONTEST」的冠军。
+                            </div>
+
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr/>
+                        <div class="wb_item_bottom">
+                            <span class="hide"></span>
+                            <ul>
+                                <li style="margin-left: 5px" onclick="Keep(this);">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;收藏
+                                </li>
+                                <li onclick="Forward(this);">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;
+                                    <em>999</em>
+                                </li>
+                                <li onclick="Comment(this);">
+                                    <i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;
+                                    <em>999</em>
+                                </li>
+                                <li onclick="Favor(this);">
+                                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;
+                                    <em>999</em>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 10px" class="wb_item hide">
+                        <div class="wb_face wb_item_float">
+                            <img src="">
+                        </div>
+                        <div class="wb_item_detail wb_item_float ">
+                            <div class="wb_item_info">
+                                {{ request.user.userprofile.name }}
+                            </div>
+                            <div class="wb_item_from">
+                                10秒前  来自 iphone 7 Plus
+                            </div>
+                            <div class="wb_item_content">
+                        
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <hr/>
+                        <div class="wb_item_bottom">
+                            <span class="hide"></span>
+                            <ul>
+                                <li style="margin-left: 5px" onclick="Keep(this);">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>&nbsp;收藏
+                                </li>
+                                <li onclick="Forward(this);">
+                                    <i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;
+                                    <em>999</em>
+                                </li>
+                                <li onclick="Comment(this);">
+                                    <i class="fa fa-commenting-o" aria-hidden="true"></i>&nbsp;
+                                    <em>999</em>
+                                </li>
+                                <li onclick="Favor(this);">
+                                    <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;
+                                    <em>999</em>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="right">
+                <div class="up">
+                    <div class="headpic">
+                        <a href="javascript:void(0)" title="{{ request.user.userprofile.name }}">
+                            <img class="W_face_radius" src="{{ request.user.userprofile.head_img }}" width="60" height="60" alt="{{ request.user.userprofile.name }}">
+                        </a>
+                    </div>
+                </div>
+                <div class="down">
+                    <div class="nameBox">
+                        <a href="javascript:void(0)" class="name">{{ request.user.userprofile.name }}</a>
+                        <a href="javascript:void(0)">
+                            <i class="W_icon icon_member_dis"></i>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <span class="W_icon_level icon_level_c2">
+                                <span class="txt_out">
+                                    <span class="txt_in">
+                                       <span title="微博等级5 升级有好礼">LV.5</span> 
+                                    </span>
+                                </span>
+                            </span>
+                        </a>
+                    </div>
+                    <ul>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <strong>10</strong>
+                                <span>关注</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <strong>10</strong>
+                                <span>粉丝</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0)">
+                                <strong>29</strong>
+                                <span>微博</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>    
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript">
+    // jquery.qqFace.js用到$.browser,这个api从jQuery1.9开始就正式废除，js代码里只要用到$.browser就会报这个错,解决如下
+        jQuery.browser={};(function(){jQuery.browser.msie=false; jQuery.browser.version=0;if(navigator.userAgent.match(/MSIE ([0-9]+)./)){ jQuery.browser.msie=true;jQuery.browser.version=RegExp.$1;}})();
+    </script>
+    <script type="text/javascript" src="/static/Commons/JavaScript/jquery.qqFace.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            new_wb_pic_names = [];
+            all_wb_id = [];
+            $('.emotion').qqFace({
+                id : 'facebox', 
+                assign:'W_textarea', //给那个控件赋值
+                path:'/static/Commons/Plugins/arclist/' //表情存放的路径
+            });
+            var str = $("#W_textarea").val();
+            $("#W_textarea").html(replace_em(str));
+
+            LoadNewWeiboCount();
+        });
+    //查看结果
+        function replace_em(str){
+            str = str.replace(/\</g,'&lt;');
+            str = str.replace(/\>/g,'&gt;');
+            str = str.replace(/\n/g,'<br/>');
+            str = str.replace(/\[em_([0-9]*)\]/g,'<img src="/static/Commons/Plugins/arclist/$1.gif" border="0" />');
+            return str;
+        };
+
+    //输入字数限制
+        var maxstrlen=140;
+        function Q(s){return document.getElementById(s);}
+        function checkWord(c){
+            len=maxstrlen;
+            var str = c.value;
+            myLen=getStrleng(str);
+            var wck=Q("wordCheck");
+            if(myLen>len*2){
+            c.value=str.substring(0,i+1);
+            }else{
+                wck.innerHTML = Math.floor((len*2-myLen)/2);
+            };
+        };
+        function getStrleng(str){
+            myLen =0;
+            i=0;
+            for(;(i<str.length)&&(myLen<=maxstrlen*2);i++){
+                if(str.charCodeAt(i)>0&&str.charCodeAt(i)<128)
+                myLen++;
+                else
+                myLen+=2;
+            };
+            return myLen;
+        };
+
+        // 图片上传
+        function Uploadpic(ths){
+            if ($('.uploadfile').hasClass('hide')) {
+                $('.uploadfile').removeClass('hide');
+                
+            }else{
+                $('#fileImage').val('');
+                $('#image-holder').empty();
+                $('.uploadfile').addClass('hide');
+            }
+        }
+        $("#fileImage").on('change', function () {
+                //Get count of selected files
+                var countFiles = $(this)[0].files.length;
+
+                var imgPath = $(this)[0].value;
+                var extn = imgPath.substring(imgPath.lastIndexOf('.') + 1).toLowerCase();
+                var image_holder = $("#image-holder");
+                image_holder.empty();
+
+                if (extn == "gif" || extn == "png" || extn == "jpg" || extn == "jpeg") {
+                    if (typeof (FileReader) != "undefined") {
+
+                         //loop for each file selected for uploaded.
+                        for (var i = 0; i < countFiles; i++) {
+
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                $("<img />", {
+                                    "src": e.target.result,
+                                        "class": "thumb-image"
+                                }).appendTo(image_holder);
+                            }
+
+                            image_holder.show();
+                            reader.readAsDataURL($(this)[0].files[i]);
+                        }
+
+                    } else {
+                        alert("This browser does not support FileReader.");
+                    }
+                } else {
+                    alert("Pls select only images");
+                }
+            });
+
+        function doUpload(){
+            var fileobjs = $("#fileImage")[0].files;
+            for (var i = 0; i < fileobjs.length; i++) {
+
+                var form = new FormData();
+                form.append("file", fileobjs[i]);
+
+                $.ajax({
+                    type:'POST',
+                    url: '/uploadfile/',
+                    dataType: 'json',
+                    data: form,
+                    processData: false,  // tell jQuery not to process the data
+                    contentType: false,  // tell jQuery not to set contentType
+                    success: function(arg){
+                        // console.log(arg);
+                        if (arg.status) {
+                            new_wb_pic_names.push(arg.filename);
+                        }
+                    }
+                })  
+            }
+            $('.uploadfile').addClass('hide');
+        }
+        // 搜索框
+        function Search(ths){
+            var target = $(ths).prev().val();
+            // console.log(target);
+            $.ajax({
+                url: '',
+                type: 'GET',
+                data: {'target': target},
+                dataType: 'json',
+                success: function(arg){
+                    console.log(arg);
+                }
+            })
+        };
+        // 发布类型
+        function SelectCut(){
+            if ($('.layer_menu_list').hasClass('hide')) {
+                $('li[action-type="select"]').removeClass('cur')
+                $('.layer_menu_list').removeClass('hide');
+            }else{
+                $('.layer_menu_list').addClass('hide');
+            }
+        };
+
+        $('li[action-type="select"]').click(function () {
+            var rank = $(this).attr("rank");
+            var menu = $(this).text();
+            console.log(menu);
+            $('.W_autocut').text(menu);
+            $(this).addClass('cur')
+            $('.layer_menu_list').addClass('hide');
+        })
+
+        // 获取新微博数量
+
+        function LoadNewWeiboCount() {
+            $.ajax({
+                url: '/get_new_wb_count/',
+                type: "GET",
+                dataType: 'JSON',
+                data: {'user_id': {{ request.user.userprofile.id }} },
+                success: function(callback){
+                    console.log(callback.new_wb_count);
+                    if (callback.new_wb_count > 0) {
+                        $('#new_wb_notify_bar').text(callback.new_wb_count);
+                        $('#new_wb_notify_bar').parent().removeClass('hide');
+                    }
+                }
+            })
+        }
+
+        // 拉取新微博
+        function LoadNewWeibo() {
+            $.ajax({
+                url: '/get_new_wb/',
+                data: {'user_id': {{ request.user.userprofile.id }} },
+                dataType: 'json',
+                type: 'GET',
+                success: function(callback){
+                    // console.log(callback.new_wb_list, typeof callback.new_wb_list)
+                    var wb_item_template = $(".wb_item").filter(".hide")
+                    for (i in callback.new_wb_list) {
+                        var wb_item = callback.new_wb_list[i];
+                        // all_wb_id.push(wb_item.wb_id); // 将推送过来的微博id加入全局变量中
+                        var formatted_wb_test = replace_em(wb_item['content'] ) ; //替换qq表情
+                        wb_item_template.find('.wb_face img').attr('src', wb_item.head_img); //替换用户头像
+                        wb_item_template.find('.wb_item_info').text(wb_item.name); //替换用户名
+                        wb_item_template.find('.wb_item_from').text(wb_item.time + ' 来自 iphone 7 Plus'); //替换时间
+                        wb_item_template.find('.wb_item_bottom span').text(wb_item.wb_id);
+                        wb_item_template.find(".wb_item_content").html(  "<div>" + formatted_wb_test + "</div>" );
+                        var img_box = ['<div style="display:inline-block">',]
+                        for (j in wb_item.pictures) {
+                                img_box.push('<img style="height:150px; max-width:540px; border: 1px solid #000; margin: 5px" src="/static/Uploads/'+ wb_item.user_id +'/' + wb_item.wb_id + '/' + wb_item.pictures[i] + '">');
+                            wb_item['pictures'][i]
+                        }
+                        for (i in wb_item.pictures){
+                            img_box.push('<img style="height:150px; max-width:540px; border: 1px solid #000; margin: 5px" src="/static/uploads/'+ wb_item.user_id +'">');
+                        }
+                        img_box.push("</div>");
+                        var img_box_div = img_box.join(' ');
+                        wb_item_template.find(".wb_item_content").append(img_box_div);
+                        $('.wb_list').prepend(wb_item_template.clone().removeClass("hide"));
+                        $('#new_wb_notify_bar').parent().addClass('hide');
+                    }
+                }
+            })
+        }
+
+        // 收藏
+        function Keep(ths) {
+
+        }
+
+        // 转发
+        function Forward(ths) {
+
+        }
+
+        // 评论
+        function Comment() {
+
+        }
+        // 点赞
+        function Favor(ths) {
+            var wb_id = $(ths).find('.wb_item_bottom span').text();
+            $.ajax({
+                url: '/favor/',
+                type: 'POST',
+                data: {'wb_id': wb_id},
+                dataType: 'json',
+                success: function(callback) {
+                    if (callback.status) {
+                        
+                    }
+                }
+            })
+        }
+        // 微博发布
+        function Submit(ths){
+            var temp = $(ths).parent().prev().children('textarea');
+            var new_wb = temp.val();
+            if (new_wb.length == 0) {
+                return null;
+            }else{
+                var message_data = {
+                    'type': 0,
+                    'content': temp.val(),
+                    'viedo': '',
+                    'topic': '',
+                    'perm': $('li[action-type="select"]').filter('.cur').attr('rank'),
+                    'uid': "{{ request.user.userprofile.id }}",
+                };
+
+            }
+            // console.log(message_data);
+            wb_data = JSON.stringify(message_data);
+            // console.log(msg, typeof msg)
+            $.ajax({
+                url: '/create_wb/',
+                type: 'POST',
+                data: {data: wb_data},
+                dataType: 'json',
+                success: function(arg){
+                    // console.log(arg);
+                    if(arg.status){
+                        var wb_item_template = $(".wb_item").filter(".hide")
+                        // console.log('wb_item_template', wb_item_template);
+                        wb_item_template.find('.wb_item_from').text(arg.data.time + ' 来自 iphone 7 Plus');
+                        wb_item_template.find('.wb_face img').attr('src', '{{ request.user.userprofile.head_img }}'); //替换用户头像
+                        var formatted_wb_test = replace_em(arg['data']['content'] ) ; //替换qq表情
+                        wb_item_template.find(".wb_item_content").html(  "<div>" + formatted_wb_test + "</div>" );
+                        var img_box = ['<div style="display:inline-block">',]
+                        for (i in new_wb_pic_names){
+                            img_box.push('<img style="height:150px; max-width:540px; border: 1px solid #000; margin: 5px" src="/static/Uploads/1/temp/'+ new_wb_pic_names[i] +'">');
+                        }
+                        img_box.push("</div>");
+                        var img_box_div = img_box.join(' ');
+                        wb_item_template.find(".wb_item_content").append(img_box_div);
+                        // console.log('img_box_div',img_box_div);
+                        // console.log('wb_item_template', wb_item_template)
+
+                        // console.log(new_wb_pic_names.length);
+                        // 清空全局上传图片文件名缓存列表
+                        new_wb_pic_names = [];
+                        // console.log(new_wb_pic_names.length);
+
+                        $('#W_textarea').val('');
+                        $('.wb_list').prepend(wb_item_template.clone().removeClass("hide"));
+                        // $("#new_wb_func_publish button").addClass("disabled");
+                    }else{
+                        alert(arg.status)
+                    }
+                }
+            })
+        }
+    </script> 
+{% endblock %}
